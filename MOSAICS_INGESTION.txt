@@ -1,0 +1,31 @@
+Python
+============================ ============================
+pip2.7 install Cython --upgrade
+pip2.7 install numpy --upgrade
+
+yum install hdf5*
+pip2.7 install h5py --upgrade
+
+yum install netcdf4*
+pip2.7 install netCDF4 --upgrade
+
+Area of Interest
+============================ ============================
+-115.561581, -2.270676, -40.722711, 36.750010
+
+METOFFICE-GLO-SST-L4-NRT-OBS-SKIN-DIU
+=====================================
+motu-client.py -u your_user -p your_password -m http://data.ncof.co.uk/mis-gateway-servlet/Motu -s http://purl.org/myocean/ontology/service/database#SST_GLO_SST_L4_NRT_OBSERVATIONS_010_014 -d METOFFICE-GLO-SST-L4-NRT-OBS-SKIN-DIU -x -115.561581 -X -40.722711 -y -2.270676 -Y 36.750010 -t "2015-08-09 00:30:00" -T "2015-08-09 23:30:00" -v sea_ice_fraction -v mask -v analysed_sst -o your_output_directory -f your_output_file_name
+
+python motu-client.py -u your_user -p your_password -m http://data.ncof.co.uk/mis-gateway-servlet/Motu -s http://purl.org/myocean/ontology/service/database#SST_GLO_SST_L4_NRT_OBSERVATIONS_010_014 -d METOFFICE-GLO-SST-L4-NRT-OBS-SKIN-DIU -x -115.561581 -X -40.722711 -y -2.270676 -Y 36.750010 -t "2015-08-10 00:30:00" -T "2015-08-10 23:30:00" -v sea_ice_fraction -v mask -v analysed_sst -o output -f METOFFICE-GLO-SST-L4-NRT-OBS-SKIN-DIU.nc
+python mosaic_METOFFICE-GLO-SST-L4-NRT-OBS-SKIN-DIU.py METOFFICE-GLO-SST-L4-NRT-OBS-SKIN-DIU.nc temperature METOFFICE_GLO_SST_L4_NRT_OBS_SKIN_DIU
+
+
+GLOBAL-ANALYSIS-FORECAST-PHYS-001-002
+=====================================
+motu-client.py -u your_user -p your_password -m http://atoll.mercator-ocean.fr/mfcglo-mercator-gateway-servlet/Motu -s http://purl.org/myocean/ontology/service/database#GLOBAL_ANALYSIS_FORECAST_PHYS_001_002-TDS -d global-analysis-forecast-phys-001-002 -x -115.561581 -X -40.722711 -y -2.270676 -Y 36.750010 -t "2015-08-11 12:00:00" -T "2015-08-17 12:00:00" -v salinity -v ssh -v temperature -o your_output_directory -f your_output_file_name
+
+python motu-client.py -u your_user -p your_password -m http://atoll.mercator-ocean.fr/mfcglo-mercator-gateway-servlet/Motu -s http://purl.org/myocean/ontology/service/database#GLOBAL_ANALYSIS_FORECAST_PHYS_001_002-TDS -d global-analysis-forecast-phys-001-002 -x -115.561581 -X -40.722711 -y -2.270676 -Y 36.750010 -t "2015-08-11 12:00:00" -T "2015-08-17 13:00:00" -z 0.494 -Z 0.4942 -v salinity -v ssh -v temperature -o output -f GLOBAL-ANALYSIS-FORECAST-PHYS-001-002.nc
+python motu-client.py -u your_user -p your_password -m http://atoll.mercator-ocean.fr/mfcglo-mercator-gateway-servlet/Motu -s http://purl.org/myocean/ontology/service/database#GLOBAL_ANALYSIS_FORECAST_PHYS_001_002-TDS -d global-analysis-forecast-phys-001-002-2hourly-t-u-v-ssh -x -115.561581 -X -40.722711 -y -2.270676 -Y 36.750010 -t "2015-08-11 12:00:00" -T "2015-08-17 13:00:00" -z 0.494 -Z 0.4942 -v ssh -v temperature -o output -f GLOBAL-ANALYSIS-FORECAST-PHYS-001-002-2hourly-t-u-v-ssh.nc
+
+
