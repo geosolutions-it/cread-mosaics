@@ -253,13 +253,13 @@ for subdataset in dataset.GetSubDatasets():
                 src_geotiff_file_path = os.path.abspath(dst_filename)
                 src_geotiff_filename, src_geotiff_file_extension = os.path.splitext(os.path.abspath(dst_filename))
                 trg_geotiff_file_path = src_geotiff_filename + "_cl" + src_geotiff_file_extension
-                
+
                 # gdal_translate allows us to add internal 512x512 tiling to the GeoTIFF; we need to save the result on another file...
-                convCommand='gdal_translate -co "TILED=YES" -co "BLOCKXSIZE=512" -co "BLOCKYSIZE=512" ' + src_geotiff_file_path + ' ' + trg_geotiff_file_path + ''
+                convCommand='gdal_translate -co "TILED=YES" -co "BLOCKXSIZE=512" -co "BLOCKYSIZE=512" ' + '"' + src_geotiff_file_path + '" "' + trg_geotiff_file_path + '" '
                 os.system(convCommand)
                 
                 # gdaladdo allows us to add the overviews to the GeoTIFF
-                convCommand='gdaladdo -r average ' + trg_geotiff_file_path + ' 2 4 8 16 32'
+                convCommand='gdaladdo -r average ' + '"' + trg_geotiff_file_path + "'" + ' 2 4 8 16 32'
                 os.system(convCommand)
                 
                 # finally let replace the old GeoTIFF with the new one
