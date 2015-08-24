@@ -49,4 +49,10 @@ for feature in granules["features"]:
     granule_id = feature["id"]
     gs_catalog.mosaic_delete_granule(coverages['coverages']['coverage'][0]['name'], store, granule_id)
     print "Deleting file [" + json.dumps(feature["properties"]["location"]) + "]"
-    os.remove(feature["properties"]["location"])
+    try:
+        os.remove(feature["properties"]["location"])
+    except Exception as e:
+        print "Could not delete the GeoTIFF Granule [" + str(feature["properties"]["location"]) + "]: " + str(e)
+        
+        import traceback
+        traceback.print_exc()
